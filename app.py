@@ -8,7 +8,8 @@ app = Dash()
 # Incorporate data
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv')
 
-# app layouy
+# app layout
+# pagesize will tell the number of pages
 app.layout = [html.Div(children='Hello World'),
               dash_table.DataTable(data=df.to_dict('records'), page_size=10)
               ]
