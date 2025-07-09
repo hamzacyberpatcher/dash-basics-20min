@@ -1,6 +1,7 @@
 # import the relevant packages
-from dash import Dash, html, dash_table
+from dash import Dash, html, dash_table, dcc
 import pandas as pd
+import plotly.express as px
 
 # init the app
 app = Dash()
@@ -10,8 +11,9 @@ df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapmi
 
 # app layout
 # pagesize will tell the number of pages
-app.layout = [html.Div(children='Hello World'),
-              dash_table.DataTable(data=df.to_dict('records'), page_size=10)
+app.layout = [html.Div(children='App with data and graph'),
+              dash_table.DataTable(data=df.to_dict('records'), page_size=10),
+              dcc.Graph(figure=px.histogram(df, x='continent', y='lifeExp', histfunc='avg'))
               ]
 
 # start running the app
